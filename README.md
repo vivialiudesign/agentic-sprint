@@ -9,7 +9,7 @@ Agentic Sprint is an AI-native workflow that uses multiple specialized agents to
 One command:
 
 ```bash
-unzip agentic-sprint.skill -d ~/.claude/skills/agentic-sprint
+unzip agentic-sprint.skill -d ~/.claude/skills/
 ```
 
 Or clone from this repo to get updates automatically:
