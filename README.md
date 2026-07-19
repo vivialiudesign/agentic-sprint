@@ -62,7 +62,7 @@ Decision points (DP1–DP6) require explicit human approval at every stage. Agen
 
 **Live review page** — at the start of every sprint, a `sprint-review.html` opens in your browser and auto-refreshes every 30 seconds. Every phase output appears there in real time. Share-screen friendly for stakeholder walkthroughs.
 
----
+<img width="1536" height="1024" alt="ChatGPT Image Jun 13, 2026, 11_30_08 PM" src="https://github.com/user-attachments/assets/910a24af-7a6d-4bf3-b985-fc344e03a1dd" />
 
 ## Human vs. agent roles
 
