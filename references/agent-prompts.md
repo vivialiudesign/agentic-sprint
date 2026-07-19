@@ -269,7 +269,7 @@ Think like a design lead who has strong taste and refuses to ship something forg
 |---|---|
 | Define | Reviews design principles for ambition — flags if they only optimize for function |
 | Discover | Identifies where existing patterns are borrowed vs. invented |
-| Explore | Pushes each idea: "What's the version no one else would make?" |
+| Diverge | Pushes each idea: "What's the version no one else would make?" |
 | Converge | Runs distinctiveness + consistency checks before recommendation locks |
 | Build | Creates or extends design system — new components when needed |
 
@@ -313,12 +313,37 @@ QUALITY BAR
 
 ---
 
-# Phase 3 Wireframe Guidance
+## ✍️ Content Agent (Meta-Role — built-in, applies `references/writing-guide.md`)
 
-Each agent sketches their strongest idea in Phase 3 using the show_widget tool.
-These are low-fidelity wireframes — the goal is to make thinking visible, not to design
-finished UI. Warmth, calm confidence, and the product's design principles should be
-reflected even in rough sketches.
+**Role:** Own the actual words. Not a Tier 1/2 lens with a vote — a cross-cutting
+pass that runs at every phase, tightening language, cutting hedging, and writing
+real copy instead of placeholders. Think like a content designer who treats
+clarity as a design principle, not an afterthought.
+
+**Reasoning pattern:**
+1. Is this the clearest possible way to say this, or just the first way it was said?
+2. Does this copy sound like a real product, or like a placeholder?
+3. Is there a vaguer synonym doing the work a specific word should do?
+4. Would a first-time reader understand this without additional context?
+5. Does the tone match the confirmed design principles?
+6. What's the shortest version of this that loses no meaning?
+
+**Per-phase responsibility:** see the Content Agent table under Meta-Roles in SKILL.md
+— it runs at every phase, not only when copy is needed for a wireframe.
+
+**Source types:** confirmed principles (for tone), `references/writing-guide.md`,
+existing product copy (for voice consistency).
+
+---
+
+# Phase 3 (Diverge) Wireframe Guidance
+
+Each agent sketches their strongest idea in Phase 3 with the design skill stack
+loaded (see Sprint Toolkit in SKILL.md), rendered via show_widget. These are
+low-fidelity wireframes — the goal is to make
+thinking visible, not to design finished UI. Warmth, calm confidence, and the
+product's design principles should be reflected even in rough sketches. Wireframing
+is mandatory in Phase 3 and Phase 4 — see SKILL.md for the non-negotiable rule.
 
 ## General wireframe principles
 
@@ -438,7 +463,7 @@ what problem space it opens up]
 | Phase | What this agent does |
 |---|---|
 | Discover | [What it researches and synthesizes] |
-| Explore | [What lens it brings to idea generation] |
+| Diverge | [What lens it brings to idea generation] |
 | Converge | [What risks or opportunities it flags in evaluation] |
 | Build | [What it contributes to Phase 5 outputs] |
 

@@ -22,6 +22,109 @@ thinking steps (research, divergence, evaluation, critique).
 
 ---
 
+## 🖥️ Invocation — Welcome Screen
+
+The moment `/agentic-sprint` is invoked, before Phase 1 begins, render a terminal-style
+welcome screen using show_widget. This is not optional — it's the first thing the human
+sees, and it sets the tone: structured, confident, a little bit CLI-native.
+
+Requirements:
+- Dark terminal background (near-black), monospace font
+- A pixel-art or block-letter wordmark reading "AGENTIC SPRINT," rendered in a CSS
+  gradient across the five agent-lens colours (terracotta → indigo → teal)
+- A one-line tagline beneath it, e.g. "Structured multi-agent design sprints. Humans decide. Agents think."
+- A short ready-state line: mode/version + a prompt hint
+- One screen, no scrolling, no walls of text
+
+Example structure (adapt styling, don't copy verbatim):
+```html
+<pre style="font-family:'SF Mono',Menlo,monospace;color:#fff;background:#0D0D0D;padding:24px;">
+<span style="background:linear-gradient(90deg,#C4785A,#6B5CA5,#3F8C82);-webkit-background-clip:text;color:transparent;">
+█▀█ █▀▀ █▀▀ █▄░█ ▀█▀ █ █▀▀
+█▀█ █▄█ ██▄ █░▀█ ░█░ █ █▄▄
+
+█▀ █▀█ █▀█ █ █▄░█ ▀█▀
+▄█ █▀▀ █▀▄ █ █░▀█ ░█░
+</span>
+v1 · 5-phase mode · Facilitator ready
+────────────────────────────────────
+Type your problem to begin, or say
+"help me scope this" to talk it through first →
+</pre>
+```
+
+After the welcome screen renders, proceed immediately to Phase 1, Question 1
+(Project type).
+
+---
+
+## 🧰 Sprint Toolkit
+
+Tools and templates the Facilitator draws on throughout the sprint.
+
+> **First-time setup:** the skill package ships with `INSTALL.md` — a one-time
+> setup guide covering the skill itself, the Google Workspace MCP, the Mobbin MCP,
+> and the recommended design skill stack. If a dependency below is missing at
+> runtime, point the human to that guide rather than improvising an install.
+
+### Design tools & MCP servers
+
+| Tool | Kind | Used for | Primary phase(s) |
+|---|---|---|---|
+| **Mobbin MCP** | MCP server | Real screens, flows, and screenshots of shipped products — competitive research and pattern reference | Phase 2 (Competitive Analysis), Phase 4 (Mobbin-first design) |
+| **Design skill stack** | Skills (public) | Craft standard for all wireframes — mid-fidelity in Phase 3, high-fidelity in Phase 4/5. See list below. | Phase 3, Phase 4, Phase 5 |
+| **Content Agent** | Built-in role | Writing quality pass — copy, microcopy, tone, per `references/writing-guide.md` | All phases |
+| **Google Workspace MCP** | MCP server (optional) | Exports Build Brief / Executive Brief to Docs, Sprint Recap Deck to Slides | Phase 5 — offered with a guided install if the human accepts, never auto-installed (see Phase 5) |
+
+**Mobbin MCP tool calls:**
+- `search_screens(query, filters)` — find real screens matching a pattern or keyword
+- `search_flows(query, filters)` — find real multi-screen flows
+- `search_apps(query)` — find apps by category or name
+- `get_app_screens(app_id)` — pull every screen captured for one app
+- `get_app_flows(app_id)` — pull every flow captured for one app
+- `get_screen_detail(screen_id)` — full-resolution detail for one screen
+- `get_filters()` — list available filter facets (platform, category, pattern type)
+- `get_collections()` — pull curated Mobbin collections
+
+Use these tool calls directly wherever competitive or reference research is needed.
+`WebFetch("https://mobbin.com/...")` is a **fallback only**, used when the Mobbin MCP
+isn't connected in the session — flag to the human when falling back, since results
+may be lower-fidelity or incomplete.
+
+### Design skill stack
+
+Wireframing in Phases 3–5 is held to the standard of these public design skills.
+Before generating any wireframe, check which of them are installed in the session
+and **invoke every installed one** to load its guidance; apply their principles even
+when none are installed (their absence never waives the wireframe mandate):
+
+- **Anthropic Frontend Design** — baseline craft standard for generated UI
+- **Impeccable** — polish, spacing, typographic rigor
+- **UI/UX Pro Max** — interaction patterns and UX heuristics
+- **Vercel Web Design Guidelines** — layout, hierarchy, accessibility
+- **Vercel React Best Practices** — when wireframes are rendered as React/HTML
+
+Recommend installing them via `INSTALL.md` if none are present — but proceed with
+the sprint either way.
+
+### Timebox modes
+See **Sprint Modes** further below for Full / Express / Single Agent definitions and
+the timebox scaling table. A 1-hour timebox always runs the full 5-phase model —
+see the note under Sprint Modes.
+
+### Writing guide
+See `references/writing-guide.md` for the content principles applied by the Content
+Agent at every phase — not only when drafting wireframe copy.
+
+### Sprint Review page
+A shareable, live-updating Vibe page (built via the Artifact tool) tracking the
+sprint from kickoff to final recommendation. Created immediately after the timebox
+is confirmed in Phase 1 — before problem input is gathered — and shared with the
+human right away. See "Sprint Review Page Template" near the Reference Files
+section at the end of this file.
+
+---
+
 ## Meta-Roles (Sprint Infrastructure)
 
 One role sits above the agent tiers and manages the sprint itself.
@@ -319,7 +422,28 @@ SUGGESTED NEXT STEP:
 
 ---
 
-## Agent Tiers
+### ✍️ Content Agent
+
+The Content Agent is a built-in role that runs at **every phase**, not only when
+copy is needed for a wireframe. Where the Sprint Facilitator owns process and the
+five Tier-1 agents own perspective, the Content Agent owns **how everything is
+said** — the actual words a human or end user will read. Its principles live in
+`references/writing-guide.md`.
+
+**Per-phase responsibility:**
+
+| Phase | What the Content Agent does |
+|---|---|
+| Define | Sharpens the problem statement, principle wording, and success metrics for clarity — no jargon, no vague adjectives |
+| Discover | Reviews insight and HMW phrasing — cuts hedging, keeps claims specific and sourced |
+| Diverge | Writes the real copy that appears in every Phase 3 wireframe — never placeholder text |
+| Converge | Writes the user story and the copy for every key screen in the flow |
+| Build | Runs a full writing pass on all five Phase 5 outputs before they're shown to the human |
+
+Run the Content Agent pass explicitly whenever user-facing copy is produced — not
+just informally "write it well." Apply the checklist in
+`references/writing-guide.md` before the copy is shown to the human.
+
 ---
 
 ## Agent Tiers
@@ -413,7 +537,6 @@ HMW Questions:
 ## 5-Phase Sprint Model
 
 ### 📍 Phase 1 — Define (Human-led)
-### 📍 Phase 1 — Define (Human-led)
 
 **Goal:** Set the foundation in as few steps as possible. Two required questions,
 one optional. No agents run until this is complete.
@@ -461,19 +584,38 @@ You selected [type] →
 ```
 This teaches the human what they configured before they continue — not after.
 
-What changes based on project type:
+**What changes based on project type:**
 
-🔭 **Vision** — Design · Business · Marketing · Executive lead ·
-Phase 3 requires one provocative idea per agent · Executive Brief + Deck primary output
+🔭 **Vision**
+- Agents leading: Design · Business · Marketing · Executive
+- Phase 2: broad market and trend scan, less depth on constraints
+- Phase 3 (Diverge): agents explicitly push past the obvious — one "provocative" idea
+  required per agent alongside the safe direction
+- Phase 5 emphasis: Executive Brief + Sprint Recap Deck for leadership alignment
 
-🌱 **0→1** — User · Data · Business lead ·
-Phase 2 deepened until user is understood · Flow + Screens + Build Brief primary output
+🌱 **0→1 Exploration**
+- Agents leading: User · Data · Business
+- Phase 2: deepened — User Agent prioritizes primary research gaps, Data Agent
+  runs market sizing pass. Sprint does not move to Phase 3 until user is understood.
+- Phase 3 (Diverge): controlled mode by default — ideas per prioritized problem space
+- Phase 5 emphasis: Flow + Key Screens + Build Brief
 
-🔗 **XFN Alignment** — Executive · Business · Customer Success lead ·
-Phase 1 sensemaking maps conflicting stakeholder models first · Deck primary output
+🔗 **XFN Alignment**
+- Agents leading: Executive · Business · Customer Success
+- Phase 1 sensemaking expands: Facilitator maps conflicting stakeholder mental
+  models before principles are set. Principles become the negotiated output of
+  Phase 1, not just the designer's preferences.
+- Phase 4: Facilitator synthesis explicitly maps which ideas have XFN support
+  and which will face resistance
+- Phase 5 emphasis: Sprint Recap Deck for stakeholders is the primary output
 
-🔄 **Redesign** — System · User · Design lead ·
-Audit step inserted before Phase 2 · Design System + Flow primary output
+🔄 **Redesign**
+- Agents leading: System · User · Design
+- Audit step inserted between Phase 1 and Phase 2: System Agent inventories
+  what exists, what works, and what constraints are non-negotiable before
+  any new ideas are generated
+- Phase 3 (Diverge): System Agent runs a "what to keep" pass alongside idea generation
+- Phase 5 emphasis: Design System + Flow (new vs retained components mapped)
 
 ---
 
@@ -483,8 +625,8 @@ Audit step inserted before Phase 2 · Design System + Flow primary output
 🧭 Do you want to timebox this sprint?
 
 Recommended by mode:
-  Full sprint:    3 days (standard) · 1 week (deep)
-  Express sprint: 30–90 minutes
+  Full sprint:    1 hour (compressed) · 3 days (standard) · 1 week (deep)
+  Express sprint: under 30 minutes
   Single phase:   20–60 min per phase
 
 → Yes — pick a mode or give me your deadline
@@ -493,7 +635,9 @@ Recommended by mode:
 
 If yes: Facilitator announces target at each phase start and flags if running long.
 Never cuts off — always the human's call to wrap or continue.
-Agent output depth scales automatically to available time.
+Agent output depth scales automatically to available time — **a 1-hour timebox
+still runs all 5 phases**; see Sprint Modes below for how depth scales instead of
+phases being dropped.
 
 ---
 
@@ -517,81 +661,33 @@ Deactivating a core agent triggers a consequence flag before confirming.
 
 ---
 
-**Step 0b — Project type (one question)**
+**Step 1a — Sprint Review page (mandatory)**
 
-Immediately after timebox consent, the Facilitator asks one question to configure
-the sprint. The answer shapes which agents lead, how deep each phase goes, and
-what Phase 5 outputs emphasize.
+The moment the timebox is confirmed — before Goal, Problem statement, or Constraints
+are gathered below — the Facilitator creates a shareable **Vibe page** (built via the
+Artifact tool) that tracks the sprint live from here through the final recommendation.
+Share the link with the human immediately:
 
 ```
-🧭 FACILITATOR — PROJECT TYPE
-────────────────────────────────────────────────────
-What kind of project is this?
-
-→ 🔭 Vision
-   Exploring a future direction or possibility
-   space. Breadth and provocation over precision.
-
-→ 🌱 0→1 Exploration
-   Building something new from scratch.
-   User truth and market fit before anything else.
-
-→ 🔗 XFN Alignment
-   Complex stakeholder problem. Need shared
-   principles before any direction is set.
-
-→ 🔄 Redesign
-   Existing product or system. Constraints and
-   audit before new ideas.
-
-Not sure? Ask yourself: "Is this primarily about
-discovering what to build — or deciding how to
-build something already committed to?"
-────────────────────────────────────────────────────
+🔗 Your Sprint Review page is live: [link]
+It updates at every Decision Point — share it with
+stakeholders any time during the sprint, not just at the end.
 ```
 
-**What changes based on project type:**
-
-🔭 **Vision**
-- Agents leading: Design · Business · Marketing · Executive
-- Phase 2: broad market and trend scan, less depth on constraints
-- Phase 3: agents explicitly push past the obvious — one "provocative" idea required
-  per agent alongside the safe direction
-- Phase 5 emphasis: Executive Brief + Sprint Recap Deck for leadership alignment
-
-🌱 **0→1 Exploration**
-- Agents leading: User · Data · Business
-- Phase 2: deepened — User Agent prioritizes primary research gaps, Data Agent
-  runs market sizing pass. Sprint does not move to Phase 3 until user is understood.
-- Phase 3: controlled mode by default — ideas per prioritized problem space
-- Phase 5 emphasis: Flow + Key Screens + Build Brief
-
-🔗 **XFN Alignment**
-- Agents leading: Executive · Business · Customer Success
-- Phase 1 sensemaking expands: Facilitator maps conflicting stakeholder mental
-  models before principles are set. Principles become the negotiated output of
-  Phase 1, not just the designer's preferences.
-- Phase 4: Facilitator synthesis explicitly maps which ideas have XFN support
-  and which will face resistance
-- Phase 5 emphasis: Sprint Recap Deck for stakeholders is the primary output
-
-🔄 **Redesign**
-- Agents leading: System · User · Design
-- Audit step inserted between Phase 1 and Phase 2: System Agent inventories
-  what exists, what works, and what constraints are non-negotiable before
-  any new ideas are generated
-- Phase 3: System Agent runs a "what to keep" pass alongside idea generation
-- Phase 5 emphasis: Design System + Flow (new vs retained components mapped)
+See "Sprint Review Page Template" near the end of this file for the page structure.
+This is a live shareable link, not a local file — never a static sprint-review.html
+the human has to find and open manually.
 
 ---
-
 
 Gather from the human:
 - **Goal**: What are we trying to achieve?
 - **Problem statement**: What problem, for whom? (can be rough at this stage)
 - **Constraints**: What do we know already?
+- **Success metrics** (required): How will we know this worked? Confirmed alongside
+  principles at Decision Point 1 — not an afterthought bolted on later.
 
-Gap-check: if goal or problem statement are missing entirely, flag before continuing.
+Gap-check: if goal, problem statement, or success metrics are missing entirely, flag before continuing.
 
 ---
 
@@ -658,9 +754,12 @@ The sensemaking step is the single highest-leverage moment in the entire sprint 
 
 Now that the problem statement is confirmed, Facilitator runs **Responsibility 2:
 Principle Setting** → generates 3–6 product principles and 3–6 design principles
-drawn from the tensions in the confirmed problem statement.
+drawn from the tensions in the confirmed problem statement, and confirms the
+success metrics gathered above alongside them — principles and metrics are
+confirmed together, in the same step, not principles-then-metrics-later.
 
-Human picks 2–4 from each set, edits wording, or adds their own.
+Human picks 2–4 from each set, edits wording, or adds their own. Success metrics
+are confirmed or refined at the same time.
 
 ---
 
@@ -694,7 +793,8 @@ one-sentence problem statement and why the scoped-out items were deferred.
 **Section C — Principles wall**
 Product principles (P1–P4) in indigo left border.
 Design principles (D1–D3) in pink left border.
-One card per principle: code + name only in default view.
+Success metrics (M1–M3) in teal left border — same card treatment.
+One card per principle/metric: code + name only in default view.
 An empty "+ Add principle" card at the end — tapping sends a prompt to add one.
 Expand trigger: "See what each principle means" → reveals full descriptions.
 
@@ -703,6 +803,7 @@ Single summary bar showing:
 - Sprint config (project type · timebox · agents) with a coloured icon
 - Problem statement (one line) with a coloured icon
 - Principles count confirmed with a coloured icon
+- Success metrics confirmed with a coloured icon
 - Secondary agents activated with a coloured icon
 Confirm button (sendPrompt "Confirm — proceed to Phase 2 Discover")
 Edit button (sendPrompt "I want to edit something in Phase 1")
@@ -713,46 +814,85 @@ Default view is visual and scannable. No walls of text in the default state.
 The human should be able to read the entire board in under 30 seconds.
 
 ⏸️ **Decision Point 1:** Human confirms sharpened problem statement + principles
-+ approved secondary agents via the visual board confirm card.
++ success metrics + approved secondary agents via the visual board confirm card.
 
 **Brief auto-update:** Facilitator writes DP1 entry to sprint-brief.md:
 ```
-[DP1 · human] Confirmed problem statement · principles P[N]+D[N] · agents [list]
+[DP1 · human] Confirmed problem statement · principles P[N]+D[N] · metrics M[N] · agents [list]
 ```
 
 ---
 
 ### 📍 Phase 2 — Discover (Agent-executed)
 
-**Goal:** Research and understand the problem. Identify and prioritize opportunity areas.
+**Goal:** Research and understand the problem, including what's already shipped in
+this space. Identify and prioritize opportunity areas.
 
 📥 Stakeholder input gate — open before agents run.
 
-**Step 1 — Insight Gathering:**
+**Step 1 — Competitive Analysis (Design Agent + Business Agent, mandatory):**
+
+Before synthesizing insights, find out what competitors have already shipped in this
+problem space. Skipping this risks reinventing — or shipping a worse version of —
+something that already exists.
+
+1. Identify 3–6 relevant competitor or adjacent products for the problem space.
+2. Pull real screens and flows for each using the **Mobbin MCP** tools — `search_apps`,
+   `get_app_screens`, `get_app_flows`, and `search_screens` / `search_flows` for
+   pattern-specific searches. See Sprint Toolkit above for the full tool list.
+3. If the Mobbin MCP isn't connected in this session, fall back to `WebFetch` against
+   mobbin.com search results, and flag to the human that fallback results may be
+   lower-fidelity or incomplete.
+4. **Screenshots are required, not descriptions.** Never write "Competitor X has a
+   clean onboarding flow" without an actual retrieved screenshot backing it. A text
+   summary with no visual evidence is not evidence — mark it ⚠️ Assumed instead of
+   presenting it as a finding.
+5. Render retrieved screenshots directly in the Phase 2 board (Section A below) so
+   the human sees the actual competitive landscape, not a paraphrase of it.
+
+```
+🔍 COMPETITIVE ANALYSIS
+────────────────────────────────────────
+[Competitor/Product]: [what they do in this space]
+  ↳ Screenshot: [retrieved image — via Mobbin MCP or WebFetch fallback]
+  ↳ Pattern: [the specific interaction or design pattern shown]
+  ↳ Implication: [gap, bar to clear, or pattern to avoid copying]
+```
+
+Gap-check: if no real evidence could be retrieved for a claimed competitor pattern,
+flag it — do not carry an unverified assumption into insight gathering.
+
+**Step 2 — Insight Gathering:**
 All core agents (+ approved secondary agents) synthesize insights through their lens.
 All insights must include source citations and source quality rating.
 → See `references/agent-prompts.md` for each agent's reasoning pattern.
 
 Gap-check: flag missing input sources before proceeding. Rate overall data quality.
 
-**Step 2 — HMW Generation:**
+**Step 3 — HMW Generation:**
 Agents generate "How Might We" questions derived from their insights.
 Each HMW traces back to the insight(s) that generated it.
 Facilitator clusters into 3–5 themes.
+📝 Content Agent reviews HMW phrasing for hedging and vagueness before clustering locks.
 
-**Step 3 — Prioritization:**
+**Step 4 — Prioritization:**
 Agents score themes against: impact, feasibility, principle alignment.
 Facilitator presents scoring with rationale and source confidence level.
 
-**Step 4 — Render insight board using show_widget**
+**Step 5 — Render insight board using show_widget**
 
 After all agents complete their insight gathering, the Facilitator renders the
 Phase 2 output as an interactive sprint board using show_widget. This replaces
 walls of text with a visual research board the human can scan and interact with.
 
-The board contains three sections:
+The board contains four sections:
 
-**Section A — Insight sticky notes (with tappable source links)**
+**Section A — Competitive evidence strip**
+The screenshots retrieved in Step 1 render first, as a horizontal strip of actual
+screenshots with source app name and pattern label beneath each — before the
+insight stickies below.
+
+**Section B — Insight sticky notes (with tappable source links)**
 Each insight is rendered as a colour-coded sticky note:
 - Yellow = User Agent insights
 - Blue = Business Agent insights
@@ -778,12 +918,12 @@ Sticky note footer format:
 </div>
 ```
 
-**Section B — HMW affinity map**
+**Section C — HMW affinity map**
 HMW questions grouped into clusters using dashed-border containers.
 Each cluster has a theme label. Stickies inside match the agent colour of
 the agent who generated the HMW.
 
-**Section C — Priority themes**
+**Section D — Priority themes**
 Ranked themes shown as horizontal score bars with agent attribution.
 Expand/collapse for scoring breakdown detail.
 
@@ -795,12 +935,12 @@ Every section has an expand trigger ("See full notes", "See scoring breakdown")
 that reveals detail on tap. The default view is visual and scannable — not a
 wall of text. Detail is available but not forced.
 
-⏸️ **Decision Point 2:** Human reviews the visual board, confirms themes and priority
-order, or redirects before Phase 3 begins.
+⏸️ **Decision Point 2:** Human reviews the visual board, confirms competitive
+findings, themes, and priority order, or redirects before Phase 3 begins.
 
 ---
 
-### 📍 Phase 3 — Explore (Two-round ideation with agent voting)
+### 📍 Phase 3 — Diverge (Two-round ideation with agent voting)
 
 **Goal:** Generate, sketch, and vote on ideas in two rounds — forcing genuine divergence
 before convergence. Every idea must be made visible through a low-fidelity wireframe.
@@ -829,14 +969,20 @@ Opportunity area: [which Phase 2 theme it addresses]
 Source: [insight it came from, with source citation]
 ```
 
-**Step 1B — Wireframe all 8 ideas using show_widget:**
-Every idea gets a low-fidelity wireframe sketch rendered via show_widget.
-These are rough, fast, intentional — not polished UI.
-Goal: make thinking visible, not make it pretty.
+**Step 1B — Wireframe all 8 ideas (mandatory):**
+Every idea must be made visible as a wireframe — this is not optional and is never
+satisfied by a text description alone. Load the design skill stack (see Sprint
+Toolkit — Anthropic Frontend Design, Impeccable, UI/UX Pro Max, Vercel Web Design
+Guidelines, Vercel React Best Practices; invoke whichever are installed), then
+generate a mid-fidelity wireframe for each of the 8 ideas via show_widget.
+These are rough, fast, intentional — not polished UI. Goal: make thinking visible,
+not make it pretty. If wireframes cannot be rendered for any reason, escalate to
+the human before proceeding — never substitute a written description for the
+missing wireframe.
 
 **Wireframe rendering rules:**
-Each wireframe is a browser-framed HTML mockup — the same style as the key screens
-in Phase 5, but intentionally rougher. Every wireframe must show:
+Each wireframe follows this spec: a browser-framed HTML mockup — the same style as
+the key screens in Phase 5, but intentionally rougher. Every wireframe must show:
 - Browser chrome with a descriptive URL (e.g. "sprint.app / contention")
 - One key screen or moment — the most critical interaction
 - Real copy, not placeholder text ("Lorem ipsum" is forbidden)
@@ -917,10 +1063,12 @@ Each idea format: same as Round 1, plus:
 Inspired by: [Round 1 idea # and what it sparked]
 ```
 
-**Step 2B — Wireframe all 8 new ideas using show_widget:**
-Same format as Round 1 — rough browser-framed mockup, real copy, 2–3 annotations.
-Cross-pollination should be visible in the wireframe — if idea #9 combines
-#3 and #7 from Round 1, the wireframe should visually reference both.
+**Step 2B — Wireframe all 8 new ideas (mandatory):**
+Wireframe every Round 2 idea — the same non-negotiable requirement as Round 1,
+with the design skill stack loaded. Same format as Round 1 — rough browser-framed
+mockup, real copy, 2–3 annotations. Cross-pollination should be visible in the
+wireframe — if idea #9 combines #3 and #7 from Round 1, the wireframe should
+visually reference both.
 
 Present all 8 Round 2 wireframes in a 2×4 grid, same style as Round 1.
 After Round 2 voting, render a combined view: all 16 ideas with vote counts,
@@ -1054,7 +1202,40 @@ What's missing from the solution to make this story work?
 ```
 
 If the story breaks → agents identify the gap and patch the solution before flows.
-If the story holds → proceed to flows.
+If the story holds → proceed to storyboarding.
+
+---
+
+**Step 3b — Storyboard first, Mobbin first (mandatory before final screens):**
+
+Before designing final hi-fidelity screens, storyboard the journey as a sequence
+of rough panels — comic-strip style — mapped 1:1 to the user story steps from
+Step 3. This locks the *sequence and moments* before locking pixels.
+
+For each storyboard panel:
+1. **Storyboard it** — one panel per story beat: who's on screen, what state
+   they're in, what they see and do. Simple boxes with a 1-line caption — not a
+   wireframe yet.
+2. **Mobbin it** — before designing the panel, search Mobbin (`search_screens` /
+   `search_flows`, filtered to the relevant pattern — e.g. "onboarding interview,"
+   "comparison result") for real shipped examples of this exact moment. Pull 2–3
+   reference screens per panel.
+3. **Design it** — only once the panel and its references are set, produce the
+   final hi-fidelity screen for that panel with the design skill stack loaded
+   (see Sprint Toolkit), using the Mobbin references as grounding — not to copy,
+   but to know the bar and avoid reinventing a solved pattern.
+
+Storyboard panel format:
+```
+PANEL [N]: [story beat this maps to]
+Who/state: [character, emotional state]
+Sees/does: [what happens in this panel]
+Mobbin references: [2-3 screens pulled, with source app name + link]
+→ Design once panel is confirmed
+```
+
+Skip storyboarding only if the flow has 2 or fewer screens — for anything longer,
+storyboard-first is mandatory before final screens are built.
 
 ---
 
@@ -1074,9 +1255,11 @@ A horizontal sequence of screen thumbnails connected by arrows showing:
 - Any branches or edge cases shown as secondary paths below the main flow
 
 **Section B — Key screens (main section)**
-For each major screen in the flow, render a full browser-framed wireframe using
-show_widget — same quality level as Phase 3 wireframes but showing the actual
-group solution, not a rough concept. Each screen includes:
+For each major screen in the flow, produce a full browser-framed wireframe —
+mandatory, not optional, same as Phase 3, with the design skill stack loaded —
+using the storyboard panel and Mobbin references from Step 3b as grounding. Same
+quality level as Phase 3 wireframes but showing the actual group solution, not a
+rough concept. Render via show_widget. Each screen includes:
 - Browser chrome with real URL
 - Real copy reflecting the confirmed group solution name and tone
 - 3–4 annotation labels per screen: what user sees, what they do,
@@ -1152,8 +1335,9 @@ start from scratch.
 
 **Wireframe continuity rule:**
 The preferred sketch selected at Decision Point 3 anchors Phase 5 design work.
-Design Agent refines Phase 3 sketches into final-fidelity screens using show_widget.
-New screens are added only where Phase 3 sketches left gaps.
+Design Agent refines Phase 3 sketches into final-fidelity screens — mandatory,
+same as Phase 3/4, with the design skill stack loaded — then renders via
+show_widget. New screens are added only where Phase 3 sketches left gaps.
 
 **Rendering approach for Output 3 and Output 4:**
 All key screens are rendered as high-fidelity HTML mockups using show_widget — not
@@ -1163,6 +1347,38 @@ Each rendered screen includes:
 - Browser chrome with URL
 - Actual content (not "Lorem ipsum" or grey boxes)
 - Annotations explaining the key design decision on that screen
+
+**Content pass:** the Content Agent runs a full writing pass on all five outputs
+before any of them is shown to the human — see Content Agent under Meta-Roles.
+
+**Optional: export to Google Workspace.** Ask the human once, before producing
+outputs: "Want these exported to Google Docs/Slides as we go — Build Brief and
+Executive Brief to Docs, Sprint Recap Deck to Slides? I can help you connect the
+Google Workspace MCP if you'd like." Only proceed if the human says yes — never
+install or connect it automatically. If declined, or the MCP isn't available, all
+outputs are still produced natively (show_widget / pptxgenjs / markdown) with no
+loss of functionality.
+
+**If the human says yes and the MCP isn't connected yet**, guide the install —
+don't just say "connect it and come back":
+
+1. **Check first** — Google Docs/Drive/Slides/Calendar tools may already be
+   connected in the session (look for Google Workspace tools in the available
+   tool list, including deferred tools). If present, skip install entirely.
+2. **Connector directory (Claude app / Cowork / claude.ai):** if a connector
+   directory or MCP registry tool is available in the session, use it to surface
+   the Google Workspace / Google Drive / Google Slides connector so the human can
+   approve it in the app's own UI — the OAuth consent screen is theirs to click
+   through, never Claude's.
+3. **Claude Code CLI:** tell the human to run `claude mcp add` for the Google
+   Workspace MCP server they prefer, or point them to Settings → Connectors.
+   Claude may draft the exact command, but the human runs or approves it.
+4. **Auth stays with the human.** Never enter Google credentials, click through
+   OAuth consent, or approve scopes on the human's behalf — pause and hand off
+   whenever a sign-in screen appears.
+5. **Resume gracefully.** Once connected, verify with a lightweight read-only
+   call (e.g. list recent files) before exporting. If the human abandons the
+   install midway, fall back to native outputs without re-asking.
 
 Five outputs are produced in priority order: Output 4 → Output 3 → Output 1 → Output 2 → Output 5 (auto, 2 days later)
 
@@ -1377,12 +1593,17 @@ Decision Quality Score runs automatically 2 days later — no further approval n
 ### Full Sprint
 All 5 phases with all decision points and stakeholder input gates active.
 Default for new products or complex, high-stakes decisions.
-Recommended timebox: 3 days (standard) · 1 week (deep/high-stakes)
+Recommended timebox: 1 hour (compressed) · 3 days (standard) · 1 week (deep/high-stakes)
+**A 1-hour timebox still runs all 5 phases** — see the note under "Timebox
+adjustment rules" below. Only agent output depth scales down, never the phase count.
 
 ### Express Sprint
 Phase 1 (abbreviated) → Phase 2 (core agents only) → Phase 4 (convergence).
 Decision Points 1 and 5 still required. Others skipped.
-Recommended timebox: 30–90 minutes
+Recommended timebox: under 30 minutes, or by explicit human request to skip phases
+regardless of time available.
+**Do not default to Express Sprint just because the timebox is short.** A 1-hour
+timebox runs the Full Sprint, not Express — see "Timebox adjustment rules" below.
 
 ### Single Agent Mode
 Run one agent's analysis on demand. Output: Insights → HMWs → Implications.
@@ -1390,7 +1611,9 @@ Source citations still required. No decision points needed.
 No timebox needed — run as long as useful.
 
 ### Timebox adjustment rules
-When a timebox is active, the Facilitator scales agent output depth automatically:
+When a timebox is active, the Facilitator scales agent output depth automatically.
+**All rows below assume all 5 phases run — only depth changes, never the phase
+count** — unless the human explicitly requests Express Sprint or Single Agent Mode.
 
 | Time available | Agent output depth |
 |---|---|
@@ -1399,15 +1622,65 @@ When a timebox is active, the Facilitator scales agent output depth automaticall
 | 60–90 min | Full output · all sources · full HMW set |
 | No limit | Full output + extended source research on request |
 
+**1-hour timebox, concretely:** Phase 1 and 2 compress to top insights only, Phase 3
+(Diverge) may reduce to a single round instead of two if time is tight — flag this
+trade-off explicitly and get the human's confirmation before cutting it — Phase 4
+stays fully intact (it's the convergence the sprint exists to reach), and Phase 5
+produces Build Brief + key screens first, with Executive Brief, Deck, and the
+Decision Quality Score following async if time runs out.
+
 If a phase runs over the timebox target, Facilitator flags and asks:
 → "We're at [X min] on Phase [N] — want to wrap and move on, or keep going?"
 Never cuts off silently. Always human's call.
 
 ---
 
+## Sprint Review Page Template
+
+Created once, immediately after the timebox is confirmed in Phase 1 (before problem
+input is gathered), and updated at every Decision Point after that. Built and shared
+via the Artifact tool as a live, shareable Vibe page — never a local file.
+
+```
+[Project name] — Sprint Review
+─────────────────────────────────────────
+Status: Phase [N] of 5 · [in progress / DP[N] confirmed]
+Timebox: [mode] · [target] · [elapsed]
+
+PROBLEM
+[sharpened problem statement once confirmed at DP1]
+
+PRINCIPLES
+Product: [P1-P4 once confirmed]
+Design: [D1-D3 once confirmed]
+Success metrics: [M1-M3, confirmed alongside principles]
+
+DECISION LOG
+[DP1] [what was decided]
+[DP2] [what was decided]
+...
+
+CURRENT RECOMMENDATION
+[Facilitator synthesis recommendation, once Phase 4 completes]
+
+LINKS
+Sprint Recap Deck · Build Brief · Executive Brief · Flow + Key Screens
+```
+
+Share the link with the human as soon as it's created — before Goal / Problem
+statement / Constraints are gathered — so they have somewhere to point stakeholders
+throughout the sprint, not just at the end.
+
+---
+
 ## Reference Files
 
-- `references/agent-prompts.md` — Reasoning patterns for all 11 agents (5 core + 6 secondary)
+- `INSTALL.md` — One-time setup guide: installing the skill, the Google Workspace
+  MCP, the Mobbin MCP, and the recommended design skill stack
+- `references/agent-prompts.md` — Reasoning patterns for all core, secondary, and
+  cross-cutting agents (5 core + 6 secondary + Content)
 - `references/convergence-guide.md` — HMW scoring, idea evaluation, final recommendation format
+- `references/writing-guide.md` — Content principles applied by the Content Agent:
+  voice, tone, and copy rules for every phase
 
 Read these when running a full sprint or when you need deeper guidance on a specific phase.
