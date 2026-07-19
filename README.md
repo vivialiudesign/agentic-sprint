@@ -19,7 +19,7 @@ git clone https://github.com/vivialiudesign/agentic-sprint \
   ~/.claude/skills/agentic-sprint
 ```
 
-Restart Claude Code. That's it.
+Restart Claude Code or Cursor. That's it.
 
 **Recommended:** add these MCPs so the sprint can read your Google Docs and push to Figma natively:
 
@@ -34,7 +34,7 @@ See [INSTALL.md](INSTALL.md) for the full setup guide.
 
 ## How to start a sprint
 
-Type `/agentic-sprint` in Claude Code, or just describe what you're working on:
+Type `/agentic-sprint` in Claude Code or Cursor, or just describe what you're working on:
 
 ```
 Run a sprint on [problem]
