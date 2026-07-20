@@ -444,6 +444,14 @@ Run the Content Agent pass explicitly whenever user-facing copy is produced — 
 just informally "write it well." Apply the checklist in
 `references/writing-guide.md` before the copy is shown to the human.
 
+**Optional enhancement — external UX-writing skill.** If the open-source
+[`ux-writing-skill`](https://github.com/content-designer/ux-writing-skill) (MIT)
+is installed in the session, invoke it for the Content Agent pass — it adds a
+UX-copy pattern library (buttons, errors, empty states, forms, notifications),
+voice/tone guidance, and a scored usability checklist. When it isn't installed,
+fall back to the inline principles in `references/writing-guide.md` — those remain
+the baseline and the sprint never depends on the external skill.
+
 ---
 
 ## Agent Tiers

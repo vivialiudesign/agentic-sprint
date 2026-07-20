@@ -103,6 +103,13 @@ mandatory) without them, applying their principles from memory. The sprint invok
 whichever are installed before designing, so the more of the stack you have, the
 higher the wireframe quality bar.
 
+**Content / UX-writing (optional).** The sprint's Content Agent already applies the
+inline principles in `references/writing-guide.md` at every phase. For a deeper UX
+pattern library and a scored copy checklist, install the open-source
+[`ux-writing-skill`](https://github.com/content-designer/ux-writing-skill) (MIT) the
+same way — the sprint uses it automatically when present, and falls back to the
+inline guide when it isn't.
+
 ---
 
 ## 5. Verify the install
