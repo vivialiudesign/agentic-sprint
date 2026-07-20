@@ -21,6 +21,20 @@ after that just starts with `/agentic-sprint`.
 2. Start a new session — the skill is picked up automatically and can be invoked
    with `/agentic-sprint`.
 
+**Cursor (2.4+)**
+
+Cursor reads the same Agent Skills format, so no changes are needed. It also
+auto-loads `~/.claude/skills/`, so the step above already makes it available.
+To keep it in Cursor's own directory instead:
+   ```
+   unzip agentic-sprint.skill -d ~/.cursor/skills/
+   ```
+Restart Cursor, then invoke `/agentic-sprint` in Agent chat (or just describe
+your problem and the agent applies it when relevant).
+
+For a **project-scoped** install in either tool, unzip into the repo's
+`.claude/skills/` or `.cursor/skills/` folder instead of the `~` home path.
+
 ---
 
 ## 2. Install the Google Workspace MCP (optional but recommended)

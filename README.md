@@ -23,6 +23,13 @@ git clone https://github.com/vivialiudesign/agentic-sprint \
 
 Restart Claude Code or Cursor. That's it.
 
+> **Using Cursor?** Cursor (2.4+) reads the same Agent Skills format and auto-loads `~/.claude/skills/`, so the command above already works. To keep it in Cursor's own directory instead, target `~/.cursor/skills/`:
+> ```bash
+> unzip agentic-sprint.skill -d ~/.cursor/skills/
+> # or, for updates:  git clone https://github.com/vivialiudesign/agentic-sprint ~/.cursor/skills/agentic-sprint
+> ```
+> Then invoke `/agentic-sprint` in Agent chat.
+
 
 **Recommended:** add these MCPs so the sprint can read your Google Docs and push to Figma natively:
 
