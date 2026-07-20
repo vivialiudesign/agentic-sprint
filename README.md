@@ -70,7 +70,7 @@ Five phases. Humans and agents each do what they're best at.
 
 Decision points (DP1–DP6) require explicit human approval at every stage. Agents never resolve high-stakes calls silently.
 
-**Live review page** — at the start of every sprint, a `sprint-review.html` opens in your browser and auto-refreshes every 30 seconds. Every phase output appears there in real time. Share-screen friendly for stakeholder walkthroughs.
+**Live review page** — at the start of every sprint, the Facilitator creates a shareable, live-updating Sprint Review page and hands you the link. Every phase output appears there as it happens — a single URL you can drop to stakeholders for a real-time walkthrough, no local files to host.
 
 
 ## Human vs. agent roles
