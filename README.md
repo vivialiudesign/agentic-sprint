@@ -21,6 +21,9 @@ git clone https://github.com/vivialiudesign/agentic-sprint \
 
 Restart Claude Code or Cursor. That's it.
 
+If this resonates, a ⭐ on GitHub goes a long way — it helps others discover it.
+
+
 **Recommended:** add these MCPs so the sprint can read your Google Docs and push to Figma natively:
 
 ```bash
