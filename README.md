@@ -2,6 +2,8 @@
 
 Agentic Sprint is an AI-native workflow that uses multiple specialized agents to automate product development activities and help teams make better decisions. It synthesizes context, brings cross-functional perspectives into the process, explores solution spaces at scale, and automatically captures decision-ready artifacts — so teams can focus on deciding what is worth building.
 
+If this resonates, a ⭐ on GitHub goes a long way — it helps others discover it.
+
 ---
 
 ## How to install
@@ -20,8 +22,6 @@ git clone https://github.com/vivialiudesign/agentic-sprint \
 ```
 
 Restart Claude Code or Cursor. That's it.
-
-If this resonates, a ⭐ on GitHub goes a long way — it helps others discover it.
 
 
 **Recommended:** add these MCPs so the sprint can read your Google Docs and push to Figma natively:
