@@ -46,15 +46,21 @@ Example structure (adapt styling, don't copy verbatim):
 █▀ █▀█ █▀█ █ █▄░█ ▀█▀
 ▄█ █▀▀ █▀▄ █ █░▀█ ░█░
 </span>
-v1 · 5-phase mode · Facilitator ready
+v2 · 5-phase mode · Facilitator ready
 ────────────────────────────────────
 Type your problem to begin, or say
 "help me scope this" to talk it through first →
 </pre>
 ```
 
-After the welcome screen renders, proceed immediately to Phase 1, Question 1
-(Project type).
+After the welcome screen renders, start the sprint in this order:
+1. Create the live HTML Sprint Review page with the five-phase shell and an initial
+   "Sprint starting" state.
+2. Share the page link with the human immediately.
+3. Proceed to Phase 1, Question 1 (Project type).
+
+Do not wait for the timebox, problem statement, or first Decision Point before creating
+and sharing the page. The HTML page is the default sprint artifact and working surface.
 
 ---
 
@@ -116,12 +122,28 @@ see the note under Sprint Modes.
 See `references/writing-guide.md` for the content principles applied by the Content
 Agent at every phase — not only when drafting wireframe copy.
 
-### Sprint Review page
-A shareable, live-updating Vibe page (built via the Artifact tool) tracking the
-sprint from kickoff to final recommendation. Created immediately after the timebox
-is confirmed in Phase 1 — before problem input is gathered — and shared with the
-human right away. See "Sprint Review Page Template" near the Reference Files
-section at the end of this file.
+### Sprint Review page — default HTML artifact
+Every sprint starts with a shareable, live-updating HTML review page. Create it
+immediately after the welcome screen, share its link before asking the first Phase 1
+question, and keep using the same page through the final recommendation.
+
+Reflect each meaningful outcome in the HTML by default: confirmed human input,
+problem framing, principles, research evidence, agent insights, concepts, votes,
+decisions, prototypes, current recommendation, and feedback needed. Update the page
+when the outcome changes, not only at formal Decision Points. The conversation may
+explain the change briefly, but the HTML page remains the durable sprint record.
+
+Use the best available HTML artifact surface. The delivered result must open from a
+link. Verify the link before sharing it. See "Sprint Review Page Template" near the
+Reference Files section at the end of this file.
+
+**Visual standard:** the review page is a designed sprint workspace, not a formatted
+text dump. Use clear phase dividers, strong hierarchy, generous spacing, embedded
+screenshots and prototypes, and responsive layouts. Give each active agent a stable
+visual identity through a character avatar or role badge. When the human supplies an
+avatar, use it consistently beside their input, confirmed decisions, and feedback
+requests. Preserve the human's chosen visual references and assets while keeping the
+result original and coherent.
 
 ---
 
@@ -1645,39 +1667,81 @@ Never cuts off silently. Always human's call.
 
 ## Sprint Review Page Template
 
-Created once, immediately after the timebox is confirmed in Phase 1 (before problem
-input is gathered), and updated at every Decision Point after that. Built and shared
-via the Artifact tool as a live, shareable Vibe page — never a local file.
+Create this live HTML page immediately after the welcome screen and share its link
+before Phase 1, Question 1. Begin with the five-phase structure and an empty starting
+state; fill it in as the sprint progresses. Update it after every meaningful human
+input, agent round, decision, or artifact. Do not wait for a Decision Point.
+
+The default view shows the current outcome and what needs attention. Supporting notes
+may be collapsible. Keep artifacts in chronological phase order:
+Define → Discover → Diverge → Converge → Build.
+
+Required HTML structure:
 
 ```
 [Project name] — Sprint Review
 ─────────────────────────────────────────
-Status: Phase [N] of 5 · [in progress / DP[N] confirmed]
+UNIVERSAL PHASE NAVIGATION
+1 Define · 2 Discover · 3 Diverge · 4 Converge · 5 Build
+[active phase is visually distinct]
+
+STATUS
+Phase [N] of 5 · [in progress / DP[N] confirmed]
 Timebox: [mode] · [target] · [elapsed]
 
-PROBLEM
-[sharpened problem statement once confirmed at DP1]
+CURRENT OUTCOME
+[the latest confirmed framing, recommendation, or decision]
 
-PRINCIPLES
-Product: [P1-P4 once confirmed]
-Design: [D1-D3 once confirmed]
-Success metrics: [M1-M3, confirmed alongside principles]
+YOUR INPUT
+[human statements, confirmations, redirects, and feedback needed]
+
+PHASE 1 · DEFINE
+Problem · examples · principles · success metrics
+
+PHASE 2 · DISCOVER
+Competitive evidence · agent insights · opportunity areas
+
+PHASE 3 · DIVERGE
+Round 1 concepts + votes
+Round 2 concepts + votes
+
+PHASE 4 · CONVERGE
+Selected patterns · solution directions · recommendation · human decision
+
+PHASE 5 · BUILD
+Connected prototype · final artifacts · validation status
 
 DECISION LOG
 [DP1] [what was decided]
 [DP2] [what was decided]
 ...
 
-CURRENT RECOMMENDATION
-[Facilitator synthesis recommendation, once Phase 4 completes]
-
 LINKS
 Sprint Recap Deck · Build Brief · Executive Brief · Flow + Key Screens
 ```
 
-Share the link with the human as soon as it's created — before Goal / Problem
-statement / Constraints are gathered — so they have somewhere to point stakeholders
-throughout the sprint, not just at the end.
+HTML behavior requirements:
+- The universal phase navigation is visible across the page and links to each phase.
+- Every artifact appears inside the phase that produced it.
+- Round 1 appears before Round 2; concepts and votes stay together.
+- Human input is visually distinct from agent proposals and facilitator synthesis.
+- The newest outcome and current feedback request are easy to find without scrolling
+  through the entire history.
+- Embed competitive screenshots, concept sketches, and prototypes when available;
+  include their source links and labels.
+- Use stable character avatars or role badges for agents. Use the human's supplied
+  avatar beside their input and feedback requests.
+- Carry the confirmed visual language into new sections and prototypes. If the human
+  provides a reference, record what visual properties were applied.
+- Verify the shared link and key navigation targets whenever the page structure changes.
+
+Before each handoff, run one visual QA pass at phone and desktop widths. Check for
+horizontal overflow, clipped or colliding text, broken images, weak contrast, inconsistent
+spacing, misplaced artifacts, mismatched device-frame colors, and unclear active-phase
+states. Fix observed defects, confirm once, and stop unless a specific defect remains.
+
+Share the link as soon as the initial shell exists so the human has a working sprint
+surface from the beginning. Reuse that link for the entire sprint.
 
 ---
 

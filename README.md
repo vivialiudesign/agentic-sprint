@@ -4,6 +4,16 @@ Agentic Sprint is an AI-native workflow that uses multiple specialized agents to
 
 If this resonates, a ⭐ on GitHub goes a long way — it helps others discover it.
 
+**Current release: v2.0.0 · Second release**
+
+### What’s new in v2
+
+- Every sprint starts with a live HTML Sprint Review page and shares the link immediately.
+- Meaningful outcomes update the same page throughout the sprint.
+- The review page has universal phase navigation and keeps artifacts inside their source phase.
+- Human input, agent proposals, and facilitator synthesis are visually distinct.
+- Character or role avatars, embedded evidence, responsive layouts, and visual QA are part of the default standard.
+
 ---
 
 ## How to install
